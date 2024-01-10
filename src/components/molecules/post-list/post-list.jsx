@@ -6,12 +6,12 @@ export default function PostList({ children }) {
   return <ul className='posts-list'>{children}</ul>;
 }
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, isLoadingComments }) => {
   return (
     <>
       {posts?.map((post) => (
         <li key={post.id}>
-          <Post postData={post} />
+          <Post postData={post} isLoadingComments={isLoadingComments} />
         </li>
       ))}
     </>
@@ -26,4 +26,5 @@ PostList.propTypes = {
 
 Posts.propTypes = {
   posts: PropTypes.array,
+  isLoadingComments: PropTypes.bool,
 };

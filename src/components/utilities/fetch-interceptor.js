@@ -28,7 +28,7 @@ export async function fetchInterceptor(url) {
     }
 
     const apiData = await response.json();
-    return apiData.data.length > 0 ? apiData.data : apiData;
+    return apiData.data ? apiData.data : apiData;
   } catch (error) {
     console.error('Fetch error:', error);
     throw error;

@@ -1,3 +1,8 @@
+/* It hiddes scroll when modal is presented */
+body:has(.modal) {
+  overflow: hidden;
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -15,6 +20,8 @@
     padding: 50px;
     border-radius: 10px;
     color: #fff;
+    opacity: 0;
+    animation: ShowModal .5s forwards ease;
 
     .modal-container__close {
       display: flex;
@@ -28,5 +35,15 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+@keyframes ShowModal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

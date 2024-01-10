@@ -1,35 +1,32 @@
 import PropTypes from 'prop-types';
+import PostHeader from '../../molecules/post-header/post-header';
+import PostCommentButton from '../../molecules/post-comment-button/post-comment-button';
 import './post.css';
+import PostTags from '../../molecules/post-tags/post-tags';
+import PostLikes from '../../molecules/post-likes/post-likes';
 
-export default function Post({ postData }) {
+export default function Post({ postData, isLoadingComments }) {
   const { image, likes, tags, text } = postData;
-  const { firstName, lastName, picture } = postData.owner;
+  const { firstName, id } = postData.owner;
 
   return (
     <div className='post'>
-      <button className='post__header'>
-        <img src={picture} alt={`${firstName}'s profile picture`} />
-        <p>{`${firstName} ${lastName}`}</p>
-      </button>
-      <ul className='post__tags'>
-        {tags?.map((tag, index) => (
-          <li key={index}>
-            <a href={`/tag/${tag}`}>#{tag}</a>
-          </li>
-        ))}
-      </ul>
+      <PostHeader userId={id} shortInfo={postData.owner} />
+      <PostTags tags={tags} />
       <figure className='post__image'>
         <img src={image} alt={`${firstName}'s post image`} />
         <figcaption>{text}</figcaption>
       </figure>
-      <p className='post__likes'>
-        <span></span>
-        {likes} likes
-      </p>
+      <PostLikes likes={likes} />
+      <PostCommentButton
+        comments={postData.comments}
+        isLoadingComments={isLoadingComments}
+      />
     </div>
   );
 }
 
 Post.propTypes = {
   postData: PropTypes.object,
+  isLoadingComments: PropTypes.bool,
 };

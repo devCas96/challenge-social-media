@@ -6,12 +6,15 @@ import PostList from '../molecules/post-list/post-list';
 
 export default function HomePage() {
   const [posts, setPosts] = useState(null);
+  const [isLoadingComments, setLoadingComments] = useState(false);
 
   const getPosts = async () => {
+    setLoadingComments(true);
     const posts = await PostServices.getPaginatedPosts();
     setPosts(posts);
     const commentsByPost = await postsWithComments(posts);
     setPosts(commentsByPost);
+    setLoadingComments(false);
   };
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export default function HomePage() {
   return (
     <Layout>
       <PostList>
-        <PostList.Body posts={posts} />
+        <PostList.Body posts={posts} isLoadingComments={isLoadingComments} />
       </PostList>
     </Layout>
   );

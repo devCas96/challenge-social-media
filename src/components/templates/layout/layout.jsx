@@ -1,8 +1,9 @@
-// import Header from '../../molecules/header/header';
+import Header from '../../molecules/header/header';
 import PropTypes from 'prop-types';
 
 const Layout = ({ children }) => (
   <>
+    <Header />
     <main>
       <section>{children}</section>
     </main>

@@ -5,6 +5,7 @@ import ModalLayout from '../../organisms/modal-layout/modal-layout';
 export default function Portal(props) {
   const { children } = props;
   const { state, setter } = props.modalState;
+
   return (
     <>
       {state &&

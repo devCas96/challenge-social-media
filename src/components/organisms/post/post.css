@@ -4,19 +4,6 @@
   max-width: 500px;
   margin: 40px 0;
 
-  .post__header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 10px 0;
-
-    img {
-      border-radius: 100%;
-      max-width: 40px;
-      width: 100%;
-    }
-  }
-
   .post__image {
     position: relative;
 
@@ -36,24 +23,5 @@
       text-align: center;
       background: rgba(0, 0, 0, 0.4);
     }
-  }
-
-  .post__tags {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-
-    li>a {
-      color: aqua;
-      text-decoration: underline;
-    }
-  }
-
-  .post__likes {
-    margin-top: 15px;
-  }
-
-  .post__comments {
-    background-color: gray;
   }
 }

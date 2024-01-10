@@ -1,0 +1,10 @@
+.post__tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  li>a {
+    color: aqua;
+    text-decoration: underline;
+  }
+}

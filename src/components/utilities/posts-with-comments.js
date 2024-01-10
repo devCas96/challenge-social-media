@@ -16,7 +16,7 @@ export const postsWithComments = async (posts) => {
 
       return {
         ...post,
-        comments: postComments.data,
+        comments: postComments,
       };
     })
   );
