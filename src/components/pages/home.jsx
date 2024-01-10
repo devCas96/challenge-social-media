@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from '../templates/layout/layout';
 import { postsWithComments } from '../utilities/posts-with-comments';
 import PostServices from '../../services/post';
+import PostList from '../molecules/post-list/post-list';
 
 export default function HomePage() {
   const [posts, setPosts] = useState(null);
@@ -17,5 +18,11 @@ export default function HomePage() {
     getPosts();
   }, []);
 
-  return <Layout>{JSON.stringify(posts)}</Layout>;
+  return (
+    <Layout>
+      <PostList>
+        <PostList.Body posts={posts} />
+      </PostList>
+    </Layout>
+  );
 }
