@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Portal from '../../templates/portal/portal';
 import useModal from '../../../hooks/usemodal';
-import formatDate, { stringToDate } from '../../utilities/date-handler';
+import formatDate, { stringToDate } from '../../../utilities/date-handler';
 import UserServices from '../../../services/user';
 import './post-header.css';
 

@@ -1,4 +1,4 @@
-import { fetchInterceptor } from '../components/utilities/fetch-interceptor';
+import { fetchInterceptor } from '../utilities/fetch-interceptor';
 
 const UserServices = {
   getUserProfileById: async (_userId) => {

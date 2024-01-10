@@ -1,5 +1,5 @@
-import { fetchInterceptor } from '../components/utilities/fetch-interceptor';
-import { API_BASE_LIMIT } from '../components/utilities/global';
+import { fetchInterceptor } from '../utilities/fetch-interceptor';
+import { API_BASE_LIMIT } from '../utilities/global';
 
 const PostServices = {
   getPaginatedPosts: async () => {

@@ -1,4 +1,4 @@
-import PostServices from '../../services/post';
+import PostServices from '../services/post';
 
 /**
  * Adds comments to each post in a list of posts.

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '../templates/layout/layout';
-import { postsWithComments } from '../utilities/posts-with-comments';
+import { postsWithComments } from '../../utilities/posts-with-comments';
 import PostServices from '../../services/post';
 import PostList from '../molecules/post-list/post-list';
 
