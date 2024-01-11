@@ -45,6 +45,7 @@
       label {
         width: 60%;
         text-align: right;
+        word-break: break-all;
       }
 
       input {
@@ -72,9 +73,44 @@
         width: 100%;
         display: block;
 
+
         label {
           margin-left: 10px;
           float: right;
+          font-size: 13px;
+        }
+
+        input {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 590px) {
+  .profile {
+    gap: 15px;
+
+    .profile__info {
+      gap: 25px;
+
+      p {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        text-align: center;
+        gap: 5px;
+
+        label {
+          width: 100%;
+          text-align: center;
+          float: none;
+          margin-left: 0;
+        }
+
+        input {
+          text-align: center;
         }
       }
     }

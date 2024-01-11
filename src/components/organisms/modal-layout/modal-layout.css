@@ -56,10 +56,10 @@ body:has(.modal) {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 790px) {
   .modal {
     .modal-container {
-      width: 90vw;
+      width: 100vw;
     }
   }
 }

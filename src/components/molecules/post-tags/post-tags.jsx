@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import './post-tags.css';
 import usePostTags from '../../../hooks/usePostTags';
+import handleGoToTop from '../../../utilities/go-to-top';
 
 export default function PostTags({ tags }) {
   const { handleFilterPostsBytag } = usePostTags();
@@ -12,6 +13,7 @@ export default function PostTags({ tags }) {
           <button
             onClick={() => {
               handleFilterPostsBytag(tag);
+              handleGoToTop();
             }}
           >
             #{tag}
