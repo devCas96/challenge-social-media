@@ -1,0 +1,25 @@
+.post-comment-button {
+  max-width: 150px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 20px;
+  background: #1e6dad;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.post-comments {
+  max-height: 60vh;
+  overflow: auto;
+  background: rgb(54, 54, 54);
+
+  .post-comments__comment {
+    background: rgb(75, 75, 75);
+    padding: 10px 30px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+  }
+}

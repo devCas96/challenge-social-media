@@ -1,0 +1,11 @@
+.post__tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  li>button {
+    color: aqua;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

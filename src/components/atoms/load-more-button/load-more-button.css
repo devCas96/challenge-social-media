@@ -1,0 +1,9 @@
+.load-more-button {
+  padding: 25px 10px;
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

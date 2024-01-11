@@ -1,0 +1,31 @@
+@import url('./reset.css');
+
+:root {
+  --max-width: 1250px;
+  --default-font-color: #ffffff;
+  --default-background-color: #000000;
+  --loader-background-color: #eeeeee;
+  --loader-highlight-color: #dedede;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light dark;
+}
+
+section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button:disabled,
+button[disabled] {
+  pointer-events: none;
+  cursor: none;
+  background-color: #696969;
+}
