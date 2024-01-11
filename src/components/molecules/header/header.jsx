@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
+import LogOutIcon from '../../../assets/icons/logout-icon.svg';
 import './header.css';
 
 export default function Header() {
@@ -17,7 +18,9 @@ export default function Header() {
           src={userInfo.picture}
           alt={`${userInfo.name}'s profile picture`}
         />
-        <button onClick={dispatchLogOut}>Log out</button>
+        <button onClick={dispatchLogOut}>
+          <img src={LogOutIcon} alt='Log out' />
+        </button>
       </div>
     </header>
   );

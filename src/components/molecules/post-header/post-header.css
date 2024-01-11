@@ -17,6 +17,7 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 
   .profile__name {
     font-size: 32px;
@@ -41,9 +42,40 @@
       justify-content: space-between;
       gap: 15px;
 
-      label,
+      label {
+        width: 60%;
+        text-align: right;
+      }
+
       input {
         text-align: right;
+        float: right;
+      }
+    }
+  }
+}
+
+@media(max-width: 790px) {
+  .profile {
+    .profile__name {
+      font-size: 17px;
+    }
+
+    .profile__info {
+      display: grid;
+      overflow: scroll;
+      max-height: 250px;
+      font-size: 15px;
+
+      p {
+        line-height: 1;
+        width: 100%;
+        display: block;
+
+        label {
+          margin-left: 10px;
+          float: right;
+        }
       }
     }
   }
