@@ -3,7 +3,7 @@
 :root {
   --max-width: 1250px;
   --default-font-color: #ffffff;
-  --default-background-color: #000000;
+  --default-background-color: #121212;
   --loader-background-color: #eeeeee;
   --loader-highlight-color: #dedede;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -11,7 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light dark;
+  background-color: var(--default-background-color);
+  color: var(--default-font-color);
 }
 
 section {
