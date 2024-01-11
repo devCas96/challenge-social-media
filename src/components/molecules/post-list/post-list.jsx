@@ -1,20 +1,25 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Post from '../../organisms/post/post';
 import './post-list.css';
 
 export default function PostList({ children }) {
-  return <ul className='posts-list'>{children}</ul>;
+  return (
+    <ul className='posts-list'>
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) return child;
+
+        return null;
+      })}
+    </ul>
+  );
 }
 
-const Posts = ({ posts, isLoadingComments }) => {
+const Posts = ({ post }) => {
   return (
-    <>
-      {posts?.map((post) => (
-        <li key={post.id}>
-          <Post postData={post} isLoadingComments={isLoadingComments} />
-        </li>
-      ))}
-    </>
+    <li>
+      <Post postData={post} />
+    </li>
   );
 };
 
@@ -25,6 +30,5 @@ PostList.propTypes = {
 };
 
 Posts.propTypes = {
-  posts: PropTypes.array,
-  isLoadingComments: PropTypes.bool,
+  post: PropTypes.object,
 };

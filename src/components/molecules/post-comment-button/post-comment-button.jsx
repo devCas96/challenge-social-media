@@ -1,31 +1,34 @@
 import PropTypes from 'prop-types';
 import Portal from '../../templates/portal/portal';
 import useModal from '../../../hooks/usemodal';
+import { useShallow } from 'zustand/react/shallow';
+import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
 import './post-comment-button.css';
-import Loader from '../../atoms/loader/loader';
 
-export default function PostCommentButton({
-  comments = [],
-  isLoadingComments,
-}) {
+export default function PostCommentButton({ comments = [] }) {
   const { isModalShowing, setShowModal } = useModal();
-  const commentsCounter = comments.length;
-
+  const commentsByPost =
+    useBoundStore(useShallow((state) => state.postList.comments)) || comments;
   return (
     <>
       <button
         className='post-comment-button'
-        disabled={commentsCounter === 0}
+        disabled={commentsByPost.length === 0}
         onClick={() => {
           setShowModal(true);
         }}
       >
-        {isLoadingComments ? <Loader /> : <p>{commentsCounter} Comments</p>}
+        {commentsByPost.length} Comments
       </button>
-      <Portal modalState={{ state: isModalShowing, setter: setShowModal }}>
-        {commentsCounter ? (
+      <Portal
+        modalState={{
+          state: isModalShowing,
+          setter: setShowModal,
+        }}
+      >
+        {commentsByPost.length ? (
           <ul className='post-comments'>
-            {comments?.map((comment) => (
+            {commentsByPost?.map((comment) => (
               <li className='post-comments__comment' key={comment.id}>
                 {comment.message}
               </li>
@@ -41,5 +44,4 @@ export default function PostCommentButton({
 
 PostCommentButton.propTypes = {
   comments: PropTypes.array,
-  isLoadingComments: PropTypes.bool,
 };

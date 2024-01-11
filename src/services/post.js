@@ -11,6 +11,10 @@ const PostServices = {
       `post/${_postId}/comment?limit=${API_BASE_LIMIT}`
     );
   },
+
+  getPostByTagId: async (_tagId) => {
+    return await fetchInterceptor(`tag/${_tagId}/post?limit=${API_BASE_LIMIT}`);
+  },
 };
 
 export default PostServices;

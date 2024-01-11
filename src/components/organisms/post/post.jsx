@@ -5,28 +5,24 @@ import './post.css';
 import PostTags from '../../molecules/post-tags/post-tags';
 import PostLikes from '../../molecules/post-likes/post-likes';
 
-export default function Post({ postData, isLoadingComments }) {
+export default function Post({ postData }) {
   const { image, likes, tags, text } = postData;
-  const { firstName, id } = postData.owner;
+  const { firstName, id: userId } = postData.owner;
 
   return (
     <div className='post'>
-      <PostHeader userId={id} shortInfo={postData.owner} />
+      <PostHeader userId={userId} shortInfo={postData.owner} />
       <PostTags tags={tags} />
       <figure className='post__image'>
         <img src={image} alt={`${firstName}'s post image`} />
         <figcaption>{text}</figcaption>
       </figure>
       <PostLikes likes={likes} />
-      <PostCommentButton
-        comments={postData.comments}
-        isLoadingComments={isLoadingComments}
-      />
+      <PostCommentButton comments={postData.comments} />
     </div>
   );
 }
 
 Post.propTypes = {
   postData: PropTypes.object,
-  isLoadingComments: PropTypes.bool,
 };

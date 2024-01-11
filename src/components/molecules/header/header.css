@@ -1,5 +1,18 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 25px;
+
+  .header__user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    img {
+      border-radius: 100%;
+      max-width: 40px;
+      width: 100%;
+    }
+  }
 }

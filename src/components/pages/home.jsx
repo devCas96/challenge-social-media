@@ -1,31 +1,49 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useCallback } from 'react';
 import Layout from '../templates/layout/layout';
 import { postsWithComments } from '../../utilities/posts-with-comments';
 import PostServices from '../../services/post';
 import PostList from '../molecules/post-list/post-list';
+import { useBoundStore } from '../../hooks/stores/useBoundedStore';
+import { API_BASE_LIMIT } from '../../utilities/global';
+import SkeletonList from '../molecules/skeleton-list/skeleton-list';
 
-export default function HomePage() {
-  const [posts, setPosts] = useState(null);
-  const [isLoadingComments, setLoadingComments] = useState(false);
+function HomePage() {
+  const dispatchPostList = useBoundStore((state) => state.setPostList);
+  const dispatchLoading = useBoundStore((state) => state.handleSetLoading);
+
+  const isLoading = useBoundStore((state) => state.isLoading);
+  const posts = useBoundStore((state) => state.postList);
+
+  const fetchPostWithComments = useCallback(async () => {
+    dispatchLoading(true);
+
+    const posts = await getPosts();
+    const commentsByPost = await postsWithComments(posts);
+
+    dispatchPostList(commentsByPost);
+    dispatchLoading(false);
+  }, []);
 
   const getPosts = async () => {
-    setLoadingComments(true);
-    const posts = await PostServices.getPaginatedPosts();
-    setPosts(posts);
-    const commentsByPost = await postsWithComments(posts);
-    setPosts(commentsByPost);
-    setLoadingComments(false);
+    return await PostServices.getPaginatedPosts();
   };
 
   useEffect(() => {
-    getPosts();
+    fetchPostWithComments();
   }, []);
 
   return (
     <Layout>
       <PostList>
-        <PostList.Body posts={posts} isLoadingComments={isLoadingComments} />
+        {isLoading ? (
+          <SkeletonList amount={API_BASE_LIMIT} />
+        ) : (
+          posts?.map((post) => <PostList.Body key={post.id} post={post} />)
+        )}
       </PostList>
     </Layout>
   );
 }
+
+export default HomePage;
