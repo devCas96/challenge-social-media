@@ -13,11 +13,11 @@ export default function Header() {
         <h1>VITE SOCIAL MEDIA</h1>
       </Link>
       <div className='header__user'>
-        <p>{userInfo.name}</p>
         <img
           src={userInfo.picture}
           alt={`${userInfo.name}'s profile picture`}
         />
+        <p>{userInfo.name}</p>
         <button onClick={dispatchLogOut}>
           <img src={LogOutIcon} alt='Log out' />
         </button>

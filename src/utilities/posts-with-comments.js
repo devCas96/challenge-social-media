@@ -10,13 +10,11 @@ export const postsWithComments = async (posts) => {
   const postsWithComments = await Promise.all(
     posts.map(async (post) => {
       // Get paginated comments for a post using the PostServices service.
-      const postComments = await PostServices.getPaginatedCommentsByPost(
-        post.id
-      );
+      const postComments = await PostServices.getCommentsByPost(post.id);
 
       return {
         ...post,
-        comments: postComments,
+        comments: postComments.data,
       };
     })
   );

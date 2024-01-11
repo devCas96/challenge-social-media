@@ -6,4 +6,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:disabled {
+    background-color: transparent;
+    text-decoration: none;
+    opacity: 0.8;
+  }
 }

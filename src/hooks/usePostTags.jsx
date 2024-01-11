@@ -11,7 +11,7 @@ export default function usePostTags() {
     dispatchLoading(true);
     dispatchTagId(_tagId);
     const filteredPosts = await getPostsByTagId(_tagId, 0);
-    const commentsByPost = await postsWithComments(filteredPosts);
+    const commentsByPost = await postsWithComments(filteredPosts.data);
     dispatchPostList(commentsByPost);
     dispatchLoading(false);
   };

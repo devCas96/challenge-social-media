@@ -5,13 +5,16 @@ import { useCallback } from 'react';
 import { postsWithComments } from '../utilities/posts-with-comments';
 import PostServices from '../services/post';
 import { useEffect } from 'react';
+import { handleCheckReachingEnd } from '../utilities/checkers';
 
 export default function usePosts() {
   const page = useRef(0);
+  const totalPosts = useRef(0);
 
   //Store actions
   const dispatchPostList = useBoundStore((state) => state.setPostList);
   const dispatchLoading = useBoundStore((state) => state.handleSetLoading);
+  const dispatchReachingEnd = useBoundStore((state) => state.handleSetReachEnd);
   const dispatchLoadingMore = useBoundStore(
     (state) => state.handleSetLoadingMore
   );
@@ -25,8 +28,14 @@ export default function usePosts() {
     dispatchLoading(true);
 
     const posts = await getPosts(0);
-    const commentsByPost = await postsWithComments(posts);
+    totalPosts.current = posts.total;
+    const commentsByPost = await postsWithComments(posts.data);
 
+    handleCheckReachingEnd(
+      posts.length,
+      totalPosts.current,
+      dispatchReachingEnd
+    );
     dispatchPostList(commentsByPost);
     dispatchLoading(false);
   }, [dispatchLoading, dispatchPostList]);
@@ -49,10 +58,15 @@ export default function usePosts() {
     } else {
       newPosts = await getPosts(page.current);
     }
-
-    const commentsByPost = await postsWithComments(newPosts);
+    totalPosts.current = newPosts.total;
+    const commentsByPost = await postsWithComments(newPosts.data);
     const updatedPostsList = [...postsList, commentsByPost].flat();
 
+    handleCheckReachingEnd(
+      updatedPostsList.length,
+      totalPosts.current,
+      dispatchReachingEnd
+    );
     dispatchPostList(updatedPostsList);
     dispatchLoadingMore(false);
   };
@@ -67,5 +81,6 @@ export default function usePosts() {
     isLoadingMore,
     onLoadMore: handleLoadMore,
     postsList,
+    initialFetch: fetchPostWithComments,
   };
 }

@@ -27,8 +27,7 @@ export async function fetchInterceptor(url) {
       throw new Error('Network response was not ok');
     }
 
-    const apiData = await response.json();
-    return apiData.data ? apiData.data : apiData;
+    return await response.json();
   } catch (error) {
     console.error('Fetch error:', error);
     throw error;

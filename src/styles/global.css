@@ -13,12 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--default-background-color);
   color: var(--default-font-color);
+  scroll-behavior: smooth;
 }
 
 section {
   max-width: var(--max-width);
   min-height: 100vh;
-  margin: 0 auto;
+  margin: 50px auto 0px;
   display: flex;
   flex-flow: column;
   justify-content: center;

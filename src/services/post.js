@@ -6,7 +6,7 @@ const PostServices = {
     return await fetchInterceptor(`post?page=${_page}&limit=${API_BASE_LIMIT}`);
   },
 
-  getPaginatedCommentsByPost: async (_postId) => {
+  getCommentsByPost: async (_postId) => {
     return await fetchInterceptor(`post/${_postId}/comment`);
   },
 
