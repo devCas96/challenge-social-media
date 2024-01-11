@@ -18,6 +18,7 @@ export default function usePosts() {
   //Store values
   const isLoading = useBoundStore((state) => state.isLoading);
   const isLoadingMore = useBoundStore((state) => state.isLoadingMore);
+  const isFilteredByTagId = useBoundStore((state) => state.tagId);
   const postsList = useBoundStore((state) => state.postList);
 
   const fetchPostWithComments = useCallback(async () => {
@@ -34,11 +35,21 @@ export default function usePosts() {
     return await PostServices.getPaginatedPosts(_page);
   };
 
+  const getPostsByTagId = async (_tagId, _page) => {
+    return await PostServices.getPostByTagId(_tagId, _page);
+  };
+
   const handleLoadMore = async () => {
     dispatchLoadingMore(true);
     page.current++;
+    let newPosts;
 
-    const newPosts = await getPosts(page.current);
+    if (isFilteredByTagId !== null) {
+      newPosts = await getPostsByTagId(isFilteredByTagId, page.current);
+    } else {
+      newPosts = await getPosts(page.current);
+    }
+
     const commentsByPost = await postsWithComments(newPosts);
     const updatedPostsList = [...postsList, commentsByPost].flat();
 

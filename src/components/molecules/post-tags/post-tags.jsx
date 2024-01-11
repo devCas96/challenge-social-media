@@ -1,24 +1,9 @@
 import PropTypes from 'prop-types';
-import PostServices from '../../../services/post';
 import './post-tags.css';
-import { postsWithComments } from '../../../utilities/posts-with-comments';
-import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
+import usePostTags from '../../../hooks/usePostTags';
 
 export default function PostTags({ tags }) {
-  const dispatchPostList = useBoundStore((state) => state.setPostList);
-  const dispatchLoading = useBoundStore((state) => state.handleSetLoading);
-
-  const handleFilterPostsBytag = async (_tagId) => {
-    dispatchLoading(true);
-    const filteredPosts = await getPostsByTagId(_tagId);
-    const commentsByPost = await postsWithComments(filteredPosts);
-    dispatchPostList(commentsByPost);
-    dispatchLoading(false);
-  };
-
-  const getPostsByTagId = async (_tagId) => {
-    return await PostServices.getPostByTagId(_tagId);
-  };
+  const { handleFilterPostsBytag } = usePostTags();
 
   return (
     <ul className='post__tags'>

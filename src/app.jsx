@@ -16,6 +16,7 @@ export default function App() {
           </RouteGuard>
         }
       />
+      <Route path='*' element={<LoginPage />} />
     </Routes>
   );
 }

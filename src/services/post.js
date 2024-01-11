@@ -10,8 +10,10 @@ const PostServices = {
     return await fetchInterceptor(`post/${_postId}/comment`);
   },
 
-  getPostByTagId: async (_tagId) => {
-    return await fetchInterceptor(`tag/${_tagId}/post?limit=${API_BASE_LIMIT}`);
+  getPostByTagId: async (_tagId, _page) => {
+    return await fetchInterceptor(
+      `tag/${_tagId}/post?page=${_page}&limit=${API_BASE_LIMIT}`
+    );
   },
 };
 
