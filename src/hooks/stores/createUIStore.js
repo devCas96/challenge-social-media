@@ -1,8 +1,9 @@
 export const createUIStore = (set) => ({
   isLoading: false,
+  isLoadingMore: false,
   isModalUserShowing: false,
   isModalCommentsShowing: false,
-  handleSetModalShowing: (_modalType, _state) =>
-    set(() => ({ [_modalType]: _state })),
   handleSetLoading: (_isLoading) => set(() => ({ isLoading: _isLoading })),
+  handleSetLoadingMore: (_isLoadingMore) =>
+    set(() => ({ isLoadingMore: _isLoadingMore })),
 });
