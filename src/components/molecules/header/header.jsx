@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
 import LogOutIcon from '../../../assets/icons/logout-icon.svg';
+import useGlobalStore from '../../../hooks/use-store';
 import './header.css';
 
 export default function Header() {
-  const userInfo = useBoundStore((state) => state.authUser);
-  const dispatchLogOut = useBoundStore((state) => state.logOut);
+  const {
+    dispatchers: { setLogOut },
+    states: { authUser },
+  } = useGlobalStore();
 
   return (
     <header className='header'>
@@ -14,11 +16,11 @@ export default function Header() {
       </Link>
       <div className='header__user'>
         <img
-          src={userInfo.picture}
-          alt={`${userInfo.name}'s profile picture`}
+          src={authUser.picture}
+          alt={`${authUser.name}'s profile picture`}
         />
-        <p>{userInfo.name}</p>
-        <button onClick={dispatchLogOut}>
+        <p>{authUser.name}</p>
+        <button onClick={setLogOut}>
           <img src={LogOutIcon} alt='Log out' />
         </button>
       </div>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import './post-tags.css';
-import usePostTags from '../../../hooks/usePostTags';
+import usePostTags from '../../../hooks/use-post-tags';
 import handleGoToTop from '../../../utilities/go-to-top';
+import './post-tags.css';
 
 export default function PostTags({ tags }) {
   const { handleFilterPostsBytag } = usePostTags();

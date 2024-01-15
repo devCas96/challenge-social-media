@@ -4,9 +4,9 @@ export const createUIStore = (set) => ({
   isModalUserShowing: false,
   isModalCommentsShowing: false,
   isReachingEndPosts: false,
-  handleSetReachEnd: (_isReachingEnd) =>
+  setReachEnd: (_isReachingEnd) =>
     set(() => ({ isReachingEndPosts: _isReachingEnd })),
-  handleSetLoading: (_isLoading) => set(() => ({ isLoading: _isLoading })),
-  handleSetLoadingMore: (_isLoadingMore) =>
+  setLoading: (_isLoading) => set(() => ({ isLoading: _isLoading })),
+  setLoadingMore: (_isLoadingMore) =>
     set(() => ({ isLoadingMore: _isLoadingMore })),
 });

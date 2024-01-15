@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Portal from '../../templates/portal/portal';
-import useModal from '../../../hooks/usemodal';
+import useModal from '../../../hooks/use-modal';
 import { useShallow } from 'zustand/react/shallow';
 import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
 import './post-comment-button.css';
@@ -9,6 +9,7 @@ export default function PostCommentButton({ comments = [] }) {
   const { isModalShowing, setShowModal } = useModal();
   const commentsByPost =
     useBoundStore(useShallow((state) => state.postList.comments)) || comments;
+
   return (
     <>
       <button

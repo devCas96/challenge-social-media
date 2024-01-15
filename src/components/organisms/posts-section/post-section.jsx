@@ -1,29 +1,38 @@
-import usePosts from '../../../hooks/usePosts';
+import usePosts from '../../../hooks/use-posts';
 import PostsList from '../../molecules/post-list/post-list';
 import SkeletonList from '../../molecules/skeleton-list/skeleton-list';
-import { API_BASE_LIMIT } from '../../../utilities/global';
 import LoadMoreButton from '../../atoms/load-more-button/load-more-button';
 import PostFilteredBy from '../../molecules/post-filtered-by/post-filtered-by';
-import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
+import { API_PAGINATION_LIMIT } from '../../../utilities/global';
+import useGlobalStore from '../../../hooks/use-store';
 
 export default function PostsSection() {
-  const { isLoading, postsList, onLoadMore, isLoadingMore, initialFetch } =
-    usePosts();
+  const {
+    isLoading,
+    postsList,
+    onLoadMore,
+    isLoadingMore,
+    fetchPostWithComments,
+    resetPage,
+  } = usePosts();
 
-  const dispatchTagId = useBoundStore((state) => state.setTagId);
-  const isReachingEnd = useBoundStore((state) => state.isReachingEndPosts);
+  const {
+    dispatchers: { setTagId },
+    states: { isReachingEndPosts },
+  } = useGlobalStore();
 
   return (
     <>
       <PostFilteredBy
         handleResetPosts={() => {
-          dispatchTagId(null);
-          initialFetch();
+          setTagId(null);
+          resetPage();
+          fetchPostWithComments();
         }}
       />
       <PostsList>
         {isLoading ? (
-          <SkeletonList amount={API_BASE_LIMIT} />
+          <SkeletonList amount={API_PAGINATION_LIMIT} />
         ) : (
           postsList?.map((post) => <PostsList.Body key={post.id} post={post} />)
         )}
@@ -31,7 +40,7 @@ export default function PostsSection() {
       <LoadMoreButton
         loadMore={onLoadMore}
         isLoadingMore={isLoadingMore}
-        isReachingEnd={isReachingEnd}
+        isReachingEnd={isReachingEndPosts}
       />
     </>
   );
