@@ -1,8 +1,8 @@
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useBoundStore } from './hooks/stores/useBoundedStore';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import HomePage from './components/pages/home';
 import LoginPage from './components/pages/login';
+import useGlobalStore from './hooks/use-store';
 
 export default function App() {
   return (
@@ -22,10 +22,12 @@ export default function App() {
 }
 
 function RouteGuard({ children }) {
-  const auth = useBoundStore((state) => state.authUser);
-  let location = useLocation();
+  const {
+    states: { authUser },
+  } = useGlobalStore();
 
-  if (auth === null) {
+  let location = useLocation();
+  if (authUser === null) {
     return <Navigate to='/' state={{ from: location }} replace />;
   }
 

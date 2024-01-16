@@ -1,5 +1,5 @@
 export const createUserStore = (set) => ({
   authUser: null,
-  logIn: (_user) => set(() => ({ authUser: _user })),
-  logOut: () => set(() => ({ authUser: null })),
+  setLogIn: (_user) => set(() => ({ authUser: _user })),
+  setLogOut: () => set(() => ({ authUser: null })),
 });

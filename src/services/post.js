@@ -1,9 +1,11 @@
 import { fetchInterceptor } from '../utilities/fetch-interceptor';
-import { API_BASE_LIMIT } from '../utilities/global';
+import { API_PAGINATION_LIMIT } from '../utilities/global';
 
 const PostServices = {
   getPaginatedPosts: async (_page) => {
-    return await fetchInterceptor(`post?page=${_page}&limit=${API_BASE_LIMIT}`);
+    return await fetchInterceptor(
+      `post?page=${_page}&limit=${API_PAGINATION_LIMIT}`
+    );
   },
 
   getCommentsByPost: async (_postId) => {
@@ -12,7 +14,7 @@ const PostServices = {
 
   getPostByTagId: async (_tagId, _page) => {
     return await fetchInterceptor(
-      `tag/${_tagId}/post?page=${_page}&limit=${API_BASE_LIMIT}`
+      `tag/${_tagId}/post?page=${_page}&limit=${API_PAGINATION_LIMIT}`
     );
   },
 };

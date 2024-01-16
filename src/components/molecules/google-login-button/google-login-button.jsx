@@ -1,11 +1,13 @@
 import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
+import useGlobalStore from '../../../hooks/use-store';
 import './google-login-button.css';
 
 export default function GoogleLoginButton() {
-  const dispatchLogIn = useBoundStore((state) => state.logIn);
   const navigate = useNavigate();
+  const {
+    dispatchers: { setLogIn },
+  } = useGlobalStore();
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -15,7 +17,7 @@ export default function GoogleLoginButton() {
         },
       }).then(async (response) => {
         const userData = await response.json();
-        dispatchLogIn(userData);
+        setLogIn(userData);
         navigate('/home');
       });
     },

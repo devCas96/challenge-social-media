@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
-import { useBoundStore } from '../../../hooks/stores/useBoundedStore';
+import useGlobalStore from '../../../hooks/use-store';
 import './post-filtered-by.css';
 
 export default function PostFilteredBy({ handleResetPosts }) {
-  const tagId = useBoundStore((state) => state.tagId);
+  const {
+    states: { tagId },
+  } = useGlobalStore();
+
   return (
     <>
       {tagId && (
